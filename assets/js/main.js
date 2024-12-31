@@ -12,11 +12,11 @@ function promptFiller() {
         },
 
         updateFinalText() {
-            this.finalText = this.prompt.replace(/[\[{](.*?)[\]}]/g, (match, p1) => this.values[p1] || match);
+            this.finalText = this.prompt.replace(/[\[{](.*?)[\]}]/g, (match, p) => this.values[p] || match);
         },
 
         getLabel(placeholder) {
-            return placeholder.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+            return placeholder.replace(/_/g, ' ').replace(/\b\w/g, p => p.toUpperCase());
         },
 
         copyToClipboard() {
