@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Filler</title>
+    <script src="//cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="//cdn.tailwindcss.com"></script>
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800 min-h-screen flex items-center justify-center">
+    <!-- Top Right Corner Icons -->
+    <div class="absolute top-4 right-4 flex space-x-4">
+        <a href="https://github.com/hasinhayder/PromptFiller" target="_blank" class="text-gray-800 dark:text-gray-100 hover:text-blue-500">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
+                <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.34-3.369-1.34-.454-1.152-1.11-1.459-1.11-1.459-.907-.62.069-.608.069-.608 1.003.07 1.531 1.031 1.531 1.031.892 1.528 2.341 1.087 2.91.831.092-.647.35-1.087.636-1.337-2.22-.252-4.555-1.11-4.555-4.943 0-1.091.39-1.983 1.029-2.682-.103-.253-.446-1.27.098-2.645 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.843c.85.004 1.705.115 2.504.337 1.908-1.294 2.748-1.025 2.748-1.025.546 1.375.202 2.392.1 2.645.64.699 1.027 1.591 1.027 2.682 0 3.841-2.339 4.687-4.566 4.935.36.31.679.921.679 1.855 0 1.34-.012 2.421-.012 2.749 0 .268.18.58.688.481C19.135 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+            </svg>
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-3xl" x-data="promptFiller()" x-init="$refs.prompt.focus()">
+        <h1 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-100">Prompt Filler</h1>
+
+        <!-- Prompt Input -->
+        <textarea id="prompt" x-ref="prompt" x-model="prompt" @input="extractPlaceholders" class="w-full h-[120px] p-3 border rounded-lg mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" placeholder="Paste your prompt here..."></textarea>
+
+        <!-- Placeholder Inputs -->
+        <div class="mt-4" x-show="placeholders.length">
+            <h2 class="text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">Fill Placeholders:</h2>
+            <template x-for="(placeholder, index) in placeholders" :key="index">
+                <div class="mb-2">
+                    <label :for="'placeholder-' + index" class="block text-gray-600 dark:text-gray-400" x-text="getLabel(placeholder) + ':'"></label>
+                    <input :id="'placeholder-' + index" x-model="values[placeholder]" @input="updateFinalText" type="text" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" :placeholder="'Enter value for ' + placeholder">
+                </div>
+            </template>
+        </div>
+
+        <!-- Final Output -->
+        <div class="mt-6 relative" x-show="prompt.trim().length > 0">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">Final Prompt:</h2>
+                <button @keyPress="copyToClipboard" @click="copyToClipboard" class=" top-2 right-2 px-3 py-1 text-sm text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                    Copy
+                </button>
+            </div>
+            <textarea x-model="finalText" readonly class="w-full h-[120px] mt-2 p-3 border rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 focus:outline-none" placeholder="Final prompt will appear here..."></textarea>
+        </div>
+    </div>
+
+    <script src="assets/script/main.js"></script>
+</body>
+
+</html>
