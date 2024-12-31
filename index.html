@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prompt Filler</title>
-    
+    <script src="//unpkg.com/alpinejs" defer></script>
     <link rel="stylesheet" href="assets/css/main.css">
     <style>
         [x-cloak] {
@@ -14,7 +14,7 @@
     </style>
 </head>
 
-<body class="bg-gray-100 text-gray-800 min-h-screen flex items-center justify-center" x-data="{ page: 'main', prompt: '' }">
+<body x-cloak class="bg-gray-100 text-gray-800 min-h-screen flex items-center justify-center" x-data="{ page: 'main', prompt: '' }">
 
     <!-- Top Right Corner Icons -->
     <div class="absolute top-4 right-4 flex space-x-4">
@@ -93,7 +93,6 @@
             </template>
         </div>
     </div>
-    <script src="//unpkg.com/alpinejs" defer></script>
     <script src="assets/js/main.js"></script>
 </body>
 
