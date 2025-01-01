@@ -87,7 +87,7 @@
             <template x-for="(prompt, index) in prompts" :key="index">
                 <div class="bg-gray-100 p-4 rounded-lg shadow flex justify-between items-center gap-5">
                     <div x-text="prompt.text"></div>
-                    <button @click="$dispatch('fill-prompt', prompt.text); page = 'main';"
+                    <button @click="$dispatch('fill-prompt', prompt.text); page = 'main'; localStorage.setItem('prompt', prompt.text);"
                         class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Use</button>
                 </div>
             </template>
