@@ -36,7 +36,7 @@
         </div>
 
         <!-- Prompt Input -->
-        <textarea id="prompt" x-ref="prompt" x-model="prompt" @input="extractPlaceholders"
+        <textarea id="prompt" x-ref="prompt" x-model="prompt" @input="saveToLocalStorage(); extractPlaceholders();"
             class="w-full h-[120px] p-3 border rounded-lg mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Paste your prompt here..."></textarea>
 
