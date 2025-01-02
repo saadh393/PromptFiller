@@ -23,6 +23,13 @@ function promptFiller() {
             navigator.clipboard.writeText(this.finalText).then(() => console.log('Copied!')).catch(console.error);
         },
 
+        askChatGPT() {
+            const gptUrl = `https://chat.openai.com/?q=${encodeURIComponent(
+              this.finalText
+            )}`;
+            window.open(gptUrl, "_blank");
+          },
+
         setPrompt(newPrompt) {
             this.prompt = newPrompt;
             this.extractPlaceholders();
