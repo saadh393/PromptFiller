@@ -44,6 +44,17 @@ function promptFiller() {
         saveToLocalStorage() {
             localStorage.setItem('prompt', this.prompt);
         },
+
+        saveTemplate() {
+            const promptText = this.prompt.trim();
+            if (!promptText) return;
+            let templates = JSON.parse(localStorage.getItem('templates') || '[]');
+            // Avoid duplicate consecutive saves
+            if (templates.length === 0 || templates[0].text !== promptText) {
+                templates.unshift({ text: promptText, date: new Date().toISOString() });
+                localStorage.setItem('templates', JSON.stringify(templates));
+            }
+        },
     };
 }
 

@@ -1,0 +1,5 @@
+This Application is a Simple Javascript with HTML and CSS Application. The name of the application is "PromptFiller". This takes Prompt in text area and represent the Dynamic Area as Text filed for Input. For Example, if the Prompt is "My name is [name] and I am [age] years old", then the Dynamic Area will be two text fields, one for "name" and one for "age".
+
+The application uses "alpinejs" from CDN. This is the Fork Application. I am creating contribution to adding value to the project. I will add a feature to Save Templates, and Re-use the Template. There will be button for Save, and show template list. Clicking on the Save button, it will save the Prompt with the Dynamic Area. After navigating the template list, the user can select the template and it will load the Prompt with the Dynamic Area. The user can then fill in the text fields and click on the Generate button to generate the final output. The Template list will have a remove delete button to remove the template from the list. The template will be saved in the local storage of the browser.
+
+For Design, You have to follow the existing design of the application.
