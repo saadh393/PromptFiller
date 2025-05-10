@@ -4,6 +4,7 @@ function promptFiller() {
         placeholders: [],
         values: {},
         finalText: '',
+        saveState: '', // '', 'success'
 
         init() {
             // Run extractPlaceholders() on initialization
@@ -54,6 +55,17 @@ function promptFiller() {
                 templates.unshift({ text: promptText, date: new Date().toISOString() });
                 localStorage.setItem('templates', JSON.stringify(templates));
             }
+        },
+
+        handleSaveClick() {
+            this.saveTemplate();
+            this.saveState = 'success';
+            // Animate button
+            this.$refs.saveBtn.classList.add('save-animate');
+            setTimeout(() => {
+                this.$refs.saveBtn.classList.remove('save-animate');
+                this.saveState = '';
+            }, 3000);
         },
     };
 }
